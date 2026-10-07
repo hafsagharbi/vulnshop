@@ -5,6 +5,7 @@ Ne jamais la déployer ailleurs que dans le pipeline de formation.
 """
 import sqlite3
 from flask import Flask, request, jsonify
+import os
 
 app = Flask(__name__)
 DB = "shop.db"
@@ -56,4 +57,4 @@ def get_order(order_id):
 
 if __name__ == "__main__":
     init_db()
-    app.run(host="0.0.0.0", port=5000)
+    app.run(host=os.getenv("HOST"), port=os.getenv("PORT"))
